@@ -15,7 +15,6 @@ const useCity = defineStore('city', {
   actions: {
     async fetchCityAll () {
       const res = await getCityAll()
-      console.log(res)
       this.allCities = res.data
     }
   }

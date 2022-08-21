@@ -4,15 +4,14 @@
       <!-- 顶部搜索框 -->
       <van-search v-model="value"
         show-action
-        placeholder="请输入搜索关键词"
-        @search="onSearch"
+        placeholder="城市/区域/位置"
+        shape="round"
         @cancel="onCancel" />
 
       <!-- tab页签 -->
       <van-tabs v-model:active="tabActive"
         color="#ff9854"
-        line-height="2"
-        @click-tab="onClickTab">
+        line-height="2">
         <template v-for="(value, key, index) in allCities">
           <van-tab :title="value.title"
             :name="key"></van-tab>
@@ -20,7 +19,12 @@
       </van-tabs>
     </div>
     <div class="content">
-      {{ currentGroup }}
+      <template v-for="(value, key, index) in allCities">
+        <city-group v-show="tabActive === key"
+          :group-data="value"></city-group>
+
+      </template>
+
     </div>
 
   </div>
@@ -28,24 +32,23 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import useCity from '@/stores/modules/city'
-
-
-const value = ref('')
-const tabActive = ref()
+import { useRouter } from 'vue-router';
+import CityGroup from './cmps/CityGroup.vue'
 
 const router = useRouter()
 
-const onSearch = () => {
-  console.log('search')
-}
+// 搜索框功能
+const value = ref('')
 const onCancel = () => {
   router.back()
 }
-const onClickTab = (title) => {
-}
+
+
+// tab的切换
+const tabActive = ref()
+
 
 // 从store中获取数据
 const cityStore = useCity()
@@ -55,6 +58,11 @@ const currentGroup = computed(() => allCities.value[tabActive.value])
 </script>
 
 <style lang='less' scoped>
+.top {
+  position: relative;
+  z-index: 9;
+}
+
 .content {
   height: calc(100vh - 98px);
   overflow-y: auto;
