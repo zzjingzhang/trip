@@ -1,7 +1,7 @@
 <template>
   <div class="tab-bar">
     <van-tabbar v-model="curIndex"
-                active-color="#ff9854">
+      active-color="#ff9854">
       <template v-for="(item, index) in tabBarData">
         <van-tabbar-item :to="item.path">
           <template #default>
@@ -9,10 +9,8 @@
           </template>
           <template #icon>
             <img :src="getAssetURL(curIndex !== index ? item.imgUrl : item.imgActiveUrl)"
-                 :alt="item.text">
+              :alt="item.text">
           </template>
-
-
         </van-tabbar-item>
       </template>
     </van-tabbar>
@@ -32,14 +30,8 @@ const curIndex = ref(0)
 
 <style lang='less' scoped>
 .tab-bar {
-
-
   img {
     height: 26px;
   }
-
-
-
-
 }
 </style>

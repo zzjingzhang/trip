@@ -5,20 +5,16 @@
       <img src="@/assets/img/home/banner.webp"
            alt="">
     </div>
-    <div class="location">
-      <div class="city">广州</div>
-      <div class="position">
-        <span class="text">我的位置</span>
-        <img src="@/assets/img/home/icon_location.png"
-             alt="">
-      </div>
-    </div>
+    <home-search-box>
+    </home-search-box>
+
 
   </div>
 </template>
 
 <script setup>
 import HomeNavBar from './cmps/HomeNavBar.vue'
+import HomeSearchBox from './cmps/HomeSearchBox.vue'
 
 </script>
 
@@ -26,27 +22,6 @@ import HomeNavBar from './cmps/HomeNavBar.vue'
 .home {
   img {
     width: 100%;
-  }
-
-  .location {
-    display: flex;
-    margin-top: 8px;
-    padding: 0 12px;
-    font-size: 12px;
-
-    .city {
-      flex: 1;
-    }
-
-    .position {
-      display: flex;
-      width: 70px;
-
-      img {
-        width: 16px;
-        margin-left: 5px;
-      }
-    }
   }
 }
 </style>
